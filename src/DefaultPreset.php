@@ -16,6 +16,7 @@ class DefaultPreset extends Preset
         static::updatePackages();
         static::updateStyles();
         static::updateBootstrapping();
+        static::updateWelcomePage();
         static::removeNodeModules();
     }
 
@@ -50,6 +51,7 @@ class DefaultPreset extends Preset
     protected static function updateStyles()
     {
         tap(new Filesystem, function ($filesystem) {
+            $filesystem->cleanDirectory(resource_path('js'));
             $filesystem->deleteDirectory(resource_path('sass'));
             $filesystem->delete(public_path('js/app.js'));
             $filesystem->delete(public_path('css/app.css'));
@@ -72,6 +74,14 @@ class DefaultPreset extends Preset
         (new Filesystem)->copyDirectory(__DIR__.'/stubs/resources/js/components', resource_path('js/components'));
         (new Filesystem)->copyDirectory(__DIR__.'/stubs/resources/js/plugins', resource_path('js/plugins'));
         (new Filesystem)->copyDirectory(__DIR__.'/stubs/resources/js/store', resource_path('js/store'));
+    }
+
+
+    protected static function updateWelcomePage()
+    {
+        (new Filesystem)->delete(resource_path('views/welcome.blade.php'));
+
+        copy(__DIR__.'/stubs/resources/views/welcome.blade.php', resource_path('views/welcome.blade.php'));
     }
 
 
