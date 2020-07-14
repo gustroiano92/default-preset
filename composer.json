@@ -1,0 +1,22 @@
+{
+  "name": "gustroiano92/default-preset",
+  "description": "Laravel default preset for projects",
+  "keywords": ["laravel", "preset"],
+  "license": "MIT",
+  "require": {
+    "laravel/framework": "^7.0",
+    "laravel/ui": "^2.0"
+  },
+  "autoload": {
+    "psr-4": {
+      "Gustroiano92\\DefaultPreset\\": "src/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Gustroiano92\\DefaultPreset\\DefaultPresetServiceProvider"
+      ]
+    }
+  }
+}
